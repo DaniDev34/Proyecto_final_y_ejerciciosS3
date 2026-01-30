@@ -6,7 +6,8 @@ Dentro de esta rama se detalla el avance del proyecto final para Programación O
 
 ## Introducción
 
-Esta documentación describe un avance del diseño y análisis de un sistema de **préstamos de videojuegos**
+Esta documentación describe un avance del diseño y análisis de un sistema de **préstamos de videojuegos**.
+
 En este avance se realiza un análisis de los requerimientos del sistema, el diseño de clases y sus relaciones, así como la elaboración del diagrama UML que los representa a detalle. El objetivo principal es definir de manera clara cómo debe funcionar el sistema antes de llegar a la etapa funcional, para asegurar así que se cumplan los requisitos solicitados y se facilite su comprensión.
 
 ## Análisis de Requerimientos 
