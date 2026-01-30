@@ -1,6 +1,7 @@
 # Avance Proyecto Final 
 
 Dentro de esta rama se detalla el avance del proyecto final para Programación Orientada a Objetos **(POO)**
+
 ---
 
 ## Introducción
@@ -54,12 +55,12 @@ Para este sistema existen 5 clases:
 
 1. La clase **Persona** representa a los individuos que interactúan con el sistema. Esta clase agrupa tanto como a los usuarios que solicitan préstamos como a los empleados que los registran, ya que ambos comparten atributos comunes como identificación y datos personales. La diferencia entre un usuario y un empleado se puede definir a través de un atributo que indique su tipo o rol dentro del sistema. La unificación de estas clases en una sola ayuda a reducir las clases, simplificar el diseño y reducir información duplicada. 
 
-1. La clase **Videojuego** representa los productos disponibles para préstamo y tiene información relevante como la identificación, título, género y disponibilidad del videojuego. Es importante para el control del inventario y validar si un producto puede ser prestado. 
+2. La clase **Videojuego** representa los productos disponibles para préstamo y tiene información relevante como la identificación, título, género y disponibilidad del videojuego. Es importante para el control del inventario y validar si un producto puede ser prestado. 
 
 
-4. La clase **Prestamo** es la transacción mediante el cual la persona **Cliente** puede solicitar un préstamo de un0 o dos videojuegos. Esta clase relaciona a la persona **Empleado**, que realiza el préstamo con los videojuegos prestados y almacena la información relevante como el Ticket de préstamo, fecha de devolución, fecha de préstamo, y el estado del préstamo. Éste mismo puede aplicar la regla principal del sistema que limita a un máximo de 2 videojuegos por persona.  
+3. La clase **Prestamo** es la transacción mediante el cual la persona **Cliente** puede solicitar un préstamo de un0 o dos videojuegos. Esta clase relaciona a la persona **Empleado**, que realiza el préstamo con los videojuegos prestados y almacena la información relevante como el Ticket de préstamo, fecha de devolución, fecha de préstamo, y el estado del préstamo. Éste mismo puede aplicar la regla principal del sistema que limita a un máximo de 2 videojuegos por persona.  
 
-5.Finalmente, la clase **Inventario** se encarga de gestionar el conjunto de videojuegos registrados detro del sistema. Esta clase permite almacenar, consultar, y actualizar la disponibilidad de los videojuegos, garantizando así que toda la información sea coherente y sólida durante los préstamos y devoluciones. 
+4.Finalmente, la clase **Inventario** se encarga de gestionar el conjunto de videojuegos registrados detro del sistema. Esta clase permite almacenar, consultar, y actualizar la disponibilidad de los videojuegos, garantizando así que toda la información sea coherente y sólida durante los préstamos y devoluciones. 
 
 ---
 
@@ -69,13 +70,62 @@ En este sistema, las clases se relacionan entre sí para representar el funciona
 
 - La clase **Persona** se relaciona con la clase **Prestamo**, ya que una persona puede participar en uno o varios préstamos en el sistema. Cada préstamo está asociado a una persona, quien puede desempeñar el rol de unusuario o de un empleado, dependiendo del contexto en el préstamo. 
 
-La clase **Prestamo** se relaciona con la clase **Videojuego**, ya que un préstamo puede incluir uno o varios videojuegos. En base a las reglas del sistema, un préstamo puede contener un máximo de 2 videojuegos, permitiendo controlar el uso del inventario y evitar que se exceda el límite establecido.
+- La clase **Prestamo** se relaciona con la clase **Videojuego**, ya que un préstamo puede incluir uno o varios videojuegos. En base a las reglas del sistema, un préstamo puede contener un máximo de 2 videojuegos, permitiendo controlar el uso del inventario y evitar que se exceda el límite establecido.
 
-La clase **Inventario** se relaciona con la clase **Videojuego**, debido a que el inventario es el encargado de almacenar y gestionar los videojuegos disponibles para un préstamo. Esta relación permite consultar la disponibilidad de los videojuegos y actualizarse cuando se realiza un préstamo o una devolución.
+- La clase **Inventario** se relaciona con la clase **Videojuego**, debido a que el inventario es el encargado de almacenar y gestionar los videojuegos disponibles para un préstamo. Esta relación permite consultar la disponibilidad de los videojuegos y actualizarse cuando se realiza un préstamo o una devolución.
 
 ---
 
 ## Diagrama UML 
+
+El **diagrama UML** de clases que se presenta a continuación representa la estructura general del sistema de **préstamos de videojuegos**. En él se muestran las clases principales, sus atributos, métodos y las relaciones que  hay entre ellas, permitiendo así visualizar de manera clara cómo se organizan en el sistema y cómo interactúan sus componentes. 
+
+![Imagen diagrama](diagram.jpg)
+
+>Este diagrama se realizó en **NOTION** con código **Mermaid**, se presenta a continuación:
+
+```
+classDiagram
+direction LR
+
+class Persona {
+  -id: String
+  -nombre: String
+  -rol: String
+  +mostrarInfo(): void
+}
+
+class Videojuego {
+  -idVideojuego: String
+  -titulo: String
+  -genero: String
+  -ejemplares: int
+  +mostrarInfo(): void
+  +disponibilidad(): boolean
+}
+
+class Prestamo {
+  -idPrestamo: String
+  -fechaPrestamo: String
+  -fechaLimite: String
+  -estado: String
+  +registrarDevolucion(): void
+  +mostrarInfo(): void
+}
+
+class Inventario {
+  +agregarVideojuego: void
+  +buscarVideojuegoPorId: Videojuego
+  +listarVideojuegos(): void
+  +actualizarEjemplares: void
+  +mostrarInfo(): void
+}
+
+
+Persona "1" --> "0..*" Prestamo : participa
+Prestamo "1" --> "1..3" Videojuego : incluye
+Inventario "1" o-- "0..*" Videojuego : almacena
+```
 
 ---
 
